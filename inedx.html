@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenwood High School</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: #1a5276;
+            color: white;
+            padding: 1rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #2874a6;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x500');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #f39c12;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        /* About section */
+        .about {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a5276;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* News section */
+        .news {
+            padding: 4rem 0;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #1a5276;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a5276;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with logo and navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/60" alt="School Logo">
+                <div>
+                    <h1>Greenwood High <span>Excellence in Education</span></h1>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero banner -->
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Greenwood High School</h2>
+            <p>Nurturing young minds since 1985 with a commitment to academic excellence, character development, and community service.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+    
+    <!-- About section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About Our School</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Greenwood High School is a premier educational institution dedicated to providing a holistic learning experience. Our mission is to empower students to become critical thinkers, lifelong learners, and responsible global citizens.</p>
+                    <p>With state-of-the-art facilities, experienced faculty, and a diverse curriculum, we offer students the opportunity to excel academically while developing their talents in arts, sports, and leadership.</p>
+                    <p>Our student-centered approach ensures that each child receives personalized attention and guidance to reach their full potential.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/600x400" alt="School Building">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- News and announcements -->
+    <section class="news">
+        <div class="container">
+            <h2 class="section-title">News & Announcements</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x300" alt="News Image">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">June 15, 2023</div>
+                        <h3 class="news-title">Annual Science Fair Winners Announced</h3>
+                        <p>Congratulations to our students who showcased innovative projects at this year's science fair.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x300" alt="News Image">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">June 10, 2023</div>
+                        <h3 class="news-title">Summer Camp Registration Now Open</h3>
+                        <p>Sign up for our exciting summer programs in arts, sports, and STEM activities.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x300" alt="News Image">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">June 5, 2023</div>
+                        <h3 class="news-title">School Ranked #1 in State Assessments</h3>
+                        <p>Greenwood High achieves top scores in statewide academic performance tests.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Staff Directory</a></li>
+                        <li><a href="#">Parent Portal</a></li>
+                        <li><a href="#">Lunch Menu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Academics</h3>
+                    <ul>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="#">Departments</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">College Counseling</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>123 Education Lane</li>
+                        <li>Springfield, ST 12345</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: info@greenwood.edu</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Greenwood High School. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
