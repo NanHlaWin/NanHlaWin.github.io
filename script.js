@@ -48,3 +48,24 @@ window.addEventListener('scroll', function() {
         nav.style.boxShadow = 'none';
     }
 });
+
+// YouTube video lazy loading
+document.addEventListener("DOMContentLoaded", function() {
+    const videoWrappers = document.querySelectorAll('.video-wrapper');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target.querySelector('iframe');
+                if (iframe && !iframe.src.includes('autoplay=1')) {
+                    iframe.src = iframe.src.replace('autoplay=0', 'autoplay=1');
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    videoWrappers.forEach(wrapper => {
+        observer.observe(wrapper);
+    });
+});
