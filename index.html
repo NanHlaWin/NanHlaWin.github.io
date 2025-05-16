@@ -130,6 +130,295 @@
     </div>
 </section>
 
+        <section id="my-writing" class="writing-section">
+    <div class="writing-header">
+        <h2><i class="fas fa-pen-fancy"></i> ကျွန်မ၏စာပိုဒ်</h2>
+        <div class="writing-controls">
+            <button id="font-size-up" class="control-btn"><i class="fas fa-text-height"></i></button>
+            <button id="font-size-down" class="control-btn"><i class="fas fa-text-width"></i></button>
+            <button id="toggle-dark" class="control-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </div>
+    
+    <div class="writing-card">
+        <div class="writing-meta">
+            <span class="writing-date">ဇန်နဝါရီ ၁၅၊ ၂၀၂၄</span>
+            <span class="writing-category">ကဗျာလေးများ</span>
+        </div>
+        
+        <h3 class="writing-title">မိုးစက်ဝေ</h3>
+        
+        <div class="writing-content">
+            <p>မိုးစက်ဝေတဲ့နေ့မှာ၊<br>
+            ရွှေရောင်လင်းတဲ့အိပ်မက်တွေ၊<br>
+            ငှက်တွေသီချင်းဆိုတယ်၊<br>
+            လေတွေကဖြတ်သန်းသွားတယ်။</p>
+            
+            <p>ရွက်ကလေးတွေကတဖျစ်ဖျစ်၊<br>
+            နှင်းဆီပန်းတွေကလှလှ၊<br>
+            စိတ်ထဲမှာတော့၊<br>
+            မင်းရဲ့အပြုံးပဲ။</p>
+        </div>
+        
+        <div class="writing-footer">
+            <div class="reaction-btns">
+                <button class="reaction-btn"><i class="fas fa-heart"></i> <span class="count">၂၄</span></button>
+                <button class="reaction-btn"><i class="fas fa-comment"></i> <span class="count">၅</span></button>
+                <button class="reaction-btn"><i class="fas fa-share"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="writing-pagination">
+        <button class="pagination-btn"><i class="fas fa-chevron-left"></i> နောက်တစ်ပုဒ်</button>
+        <button class="pagination-btn">အရှေ့တစ်ပုဒ် <i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+       /* Writing Section Styles */
+.writing-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: 'Pyidaungsu', 'Noto Sans Myanmar', sans-serif;
+}
+
+.writing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ff9a8b;
+    padding-bottom: 0.5rem;
+}
+
+.writing-header h2 {
+    color: #ff6b6b;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+
+.writing-header h2 i {
+    margin-right: 10px;
+    color: #ff9a8b;
+}
+
+.writing-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control-btn {
+    background: linear-gradient(45deg, #ff9a8b, #ff6b6b);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+}
+
+.writing-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.writing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.writing-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(45deg, #ff9a8b, #ff6b6b);
+    color: white;
+    font-size: 0.9rem;
+}
+
+.writing-title {
+    padding: 1.5rem 1.5rem 0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.writing-content {
+    padding: 1rem 1.5rem 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+}
+
+.writing-content p {
+    margin-bottom: 1.5rem;
+}
+
+.writing-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.reaction-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.reaction-btn {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.reaction-btn:hover {
+    color: #ff4757;
+    transform: scale(1.05);
+}
+
+.reaction-btn i {
+    font-size: 1.1rem;
+}
+
+.writing-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.pagination-btn {
+    background: linear-gradient(45deg, #ff9a8b, #ff6b6b);
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Dark Mode Styles */
+.dark-mode .writing-card {
+    background: #2d3436;
+    color: #f5f6fa;
+}
+
+.dark-mode .writing-title,
+.dark-mode .writing-content {
+    color: #f5f6fa;
+}
+
+.dark-mode .writing-content {
+    color: #dfe6e9;
+}
+
+.dark-mode .writing-footer {
+    border-top: 1px solid #3d3d3d;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .writing-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .writing-content {
+        font-size: 1rem;
+    }
+}
+        // Writing Section Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Font Size Controls
+    const content = document.querySelector('.writing-content');
+    const fontSizeUp = document.getElementById('font-size-up');
+    const fontSizeDown = document.getElementById('font-size-down');
+    
+    let currentFontSize = 16; // Default font size in pixels
+    
+    fontSizeUp.addEventListener('click', function() {
+        if (currentFontSize < 22) {
+            currentFontSize += 1;
+            content.style.fontSize = currentFontSize + 'px';
+        }
+    });
+    
+    fontSizeDown.addEventListener('click', function() {
+        if (currentFontSize > 14) {
+            currentFontSize -= 1;
+            content.style.fontSize = currentFontSize + 'px';
+        }
+    });
+    
+    // Dark Mode Toggle
+    const toggleDark = document.getElementById('toggle-dark');
+    const writingSection = document.querySelector('.writing-section');
+    
+    toggleDark.addEventListener('click', function() {
+        writingSection.classList.toggle('dark-mode');
+        
+        // Change icon
+        const icon = this.querySelector('i');
+        if (writingSection.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    });
+    
+    // Reaction Buttons
+    const reactionBtns = document.querySelectorAll('.reaction-btn');
+    
+    reactionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const count = this.querySelector('.count');
+            if (count) {
+                let currentCount = parseInt(count.textContent);
+                count.textContent = currentCount + 1;
+                
+                // Add animation
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
+            }
+        });
+    });
+});
+
         <section id="youtube" class="section">
             <h2>ကျွန်မ၏ YouTube Videos</h2>
             <div class="video-container">
