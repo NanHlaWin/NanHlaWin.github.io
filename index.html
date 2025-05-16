@@ -469,7 +469,437 @@
 </body>
 </html>   
 
+  <!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ကျွန်မ၏ဘဝမှတ်တမ်းဓာတ်ပုံများ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pyidaungsu', 'Noto Sans Myanmar', sans-serif;
+        }
+
+        body {
+            background-color: #f9f5ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Photo Gallery Section */
+        .photo-gallery {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .gallery-header h2 {
+            color: #8a4fff;
+            font-size: 2.2rem;
+            display: inline-block;
+            padding: 0 1rem;
+            background: #f9f5ff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-header::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8a4fff, transparent);
+            z-index: 0;
+        }
+
+        .gallery-header i {
+            color: #b388ff;
+            margin-right: 10px;
+        }
+
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            background: #e1c4ff;
+            border: none;
+            color: #5e35b1;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #8a4fff;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(138, 79, 255, 0.3);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            aspect-ratio: 1/1;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover .photo-img {
+            transform: scale(1.05);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 1.5rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .photo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(138, 79, 255, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: #8a4fff;
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .modal-nav-btn {
+            background: rgba(138, 79, 255, 0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav-btn:hover {
+            background: #8a4fff;
+            transform: scale(1.1);
+        }
+
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .gallery-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="photo-gallery">
+        <div class="gallery-header">
+            <h2><i class="fas fa-camera-retro"></i> ကျွန်မ၏ဘဝမှတ်တမ်းဓာတ်ပုံများ</h2>
+        </div>
         
+        <div class="gallery-controls">
+            <button class="filter-btn active" data-filter="all">အားလုံး</button>
+            <button class="filter-btn" data-filter="nature">သဘာဝ</button>
+            <button class="filter-btn" data-filter="school">ကျောင်းဘဝ</button>
+            <button class="filter-btn" data-filter="friends">မိတ်ဆွေများ</button>
+            <button class="filter-btn" data-filter="travel">ခရီးသွားများ</button>
+        </div>
+        
+        <div class="gallery-container">
+            <!-- Photo 1 -->
+            <div class="photo-card" data-category="school">
+                <img src="https://via.placeholder.com/600x600/8a4fff/ffffff?text=ကျောင်းပွဲတော်" alt="ကျောင်းပွဲတော်" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">ကျောင်းပွဲတော်</h3>
+                    <p class="photo-date">မတ်လ ၂၀၂၃</p>
+                </div>
+            </div>
+            
+            <!-- Photo 2 -->
+            <div class="photo-card" data-category="nature">
+                <img src="https://via.placeholder.com/600x600/4caf50/ffffff?text=နံနက်ခင်းလှပခြင်း" alt="နံနက်ခင်းလှပခြင်း" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">နံနက်ခင်းလှပခြင်း</h3>
+                    <p class="photo-date">ဇန်နဝါရီ ၂၀၂၃</p>
+                </div>
+            </div>
+            
+            <!-- Photo 3 -->
+            <div class="photo-card" data-category="friends">
+                <img src="https://via.placeholder.com/600x600/ff9800/ffffff?text=မိတ်ဆွေများနှင့်" alt="မိတ်ဆွေများနှင့်" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">မိတ်ဆွေများနှင့်</h3>
+                    <p class="photo-date">ဒီဇင်ဘာ ၂၀၂၂</p>
+                </div>
+            </div>
+            
+            <!-- Photo 4 -->
+            <div class="photo-card" data-category="travel">
+                <img src="https://via.placeholder.com/600x600/2196f3/ffffff?text=ခရီးသွားမှတ်တမ်း" alt="ခရီးသွားမှတ်တမ်း" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">ခရီးသွားမှတ်တမ်း</h3>
+                    <p class="photo-date">ဩဂုတ် ၂၀၂၂</p>
+                </div>
+            </div>
+            
+            <!-- Photo 5 -->
+            <div class="photo-card" data-category="school">
+                <img src="https://via.placeholder.com/600x600/9c27b0/ffffff?text=စာသင်ခန်း" alt="စာသင်ခန်း" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">စာသင်ခန်း</h3>
+                    <p class="photo-date">ဇူလိုင် ၂၀၂၂</p>
+                </div>
+            </div>
+            
+            <!-- Photo 6 -->
+            <div class="photo-card" data-category="nature">
+                <img src="https://via.placeholder.com/600x600/4caf50/ffffff?text=�ေဝင်ဆည်းဆာ" alt="နေဝင်ဆည်းဆာ" class="photo-img">
+                <div class="photo-overlay">
+                    <h3 class="photo-title">နေဝင်ဆည်းဆာ</h3>
+                    <p class="photo-date">မေ ၂၀၂၂</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photo Modal -->
+        <div class="photo-modal">
+            <div class="modal-content">
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <img src="" alt="" class="modal-img">
+                <div class="modal-nav">
+                    <button class="modal-nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="modal-nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <p class="modal-caption"></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const photoCards = document.querySelectorAll('.photo-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    
+                    // Filter photos
+                    photoCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const modal = document.querySelector('.photo-modal');
+            const modalImg = document.querySelector('.modal-img');
+            const modalCaption = document.querySelector('.modal-caption');
+            const closeBtn = document.querySelector('.modal-close');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentPhotoIndex = 0;
+            const photos = Array.from(photoCards);
+            
+            // Open modal when photo is clicked
+            photoCards.forEach((card, index) => {
+                card.addEventListener('click', function() {
+                    currentPhotoIndex = index;
+                    updateModal();
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Navigate photos
+            prevBtn.addEventListener('click', showPrevPhoto);
+            nextBtn.addEventListener('click', showNextPhoto);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevPhoto();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextPhoto();
+                    } else if (e.key === 'Escape') {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+            
+            function updateModal() {
+                const activeCard = photos[currentPhotoIndex];
+                const imgSrc = activeCard.querySelector('img').src;
+                const title = activeCard.querySelector('.photo-title').textContent;
+                const date = activeCard.querySelector('.photo-date').textContent;
+                
+                modalImg.src = imgSrc;
+                modalCaption.textContent = `${title} - ${date}`;
+            }
+            
+            function showPrevPhoto() {
+                currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+                updateModal();
+            }
+            
+            function showNextPhoto() {
+                currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                updateModal();
+            }
+        });
+    </script>
+</body>
+</html>      
      
     
 
